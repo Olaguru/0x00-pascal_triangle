@@ -9,9 +9,27 @@ def island_perimeter(grid):
     perimeter = 0
 
     # loop over the grid row and col
-    for row in grid:
-        for col in row:
-            perimeter += 4
+    for row in range(len(grid)):
+        for col in range(len(grid[row])):
 
-            # check the col item at top
-    return int(perimeter / 10)
+            # only when we see 1 should we add 4
+            if grid[row][col] == 1:
+                perimeter += 4
+
+                # check the item at top
+                if row > 0 and grid[row - 1][col] == 1:
+                    perimeter -= 1
+
+                # check the item below
+                if row < len(grid) - 1 and grid[row + 1][col] == 1:
+                    perimeter -= 1
+
+                # checkn the item left
+                if col > 0 and grid[row][col - 1] == 1:
+                    perimeter -= 1
+
+                # check the item right
+                if col < len(grid[row]) - 1 and grid[row][col + 1] == 1:
+                    perimeter -= 1
+
+    return perimeter
